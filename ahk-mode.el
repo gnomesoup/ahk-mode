@@ -351,7 +351,7 @@ Finds the command in the internal AutoHotkey documentation."
          (not opening-brace)
          (not block-skip)
          (looking-at "^[^: \n]+:$")
-         (looking-at "^[^:\n]+:\\([^:\n]*\\)?[ 	]*$"))
+         (looking-at "^[^:\n]+:\\([^:\n]*\\)?[  ]*$"))
         (setq indent (+ indent ahk-indentation)))
        ;; opening brace
        ((looking-at "^\\([ \t]*\\)[{(]$")
@@ -390,7 +390,7 @@ Finds the command in the internal AutoHotkey documentation."
              (not empty-brace)
              (or
               (looking-at "^[ \t]*\\([Ll]oop\\)[^{\n]+")
-              (looking-at "^\\([ 	]*\\)\\([iI]f\\|[eE]lse\\)[^{\n]+")))
+              (looking-at "^\\([  ]*\\)\\([iI]f\\|[eE]lse\\)[^{\n]+")))
         ;; adjust when stacking multiple single line commands
         (setq indent (- indent (if prev-single (- (* 2 ahk-indentation)) 0) ahk-indentation)))
       )
@@ -482,7 +482,7 @@ For details, see `comment-dwim'."
 (defvar ahk-directives-regexp (regexp-opt ahk-directives 'words))
 (defvar ahk-variables-regexp (regexp-opt ahk-variables 'words))
 (defvar ahk-keys-regexp (regexp-opt ahk-keys 'words))
-(defvar ahk-operators-regexp (regexp-opt ahk-operators))
+(defvar ahk-operators-regexp (regexp-opt ahk-operators 'symbol))
 
 (defvar ahk-double-quote-string-re "[\"]\\(\\\\.\\|[^\"\n]\\)*[\"]"
   "Regexp used to match a double-quoted string literal")
